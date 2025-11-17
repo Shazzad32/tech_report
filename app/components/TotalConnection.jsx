@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
-
+import { useReference } from "../context/ReferenceContext";
 const TotalConnection = ({ userInfo }) => {
-  const totalDevice = userInfo.filter((item) => item.reference === "TAHIR");
+  const { reference } = useReference();
+  const totalDevice = userInfo.filter((item) => item.reference === reference);
 
   return (
     <div className="w-full h-[93vh] p-4 bg-[#0d0d0d]">

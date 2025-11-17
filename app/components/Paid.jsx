@@ -1,9 +1,11 @@
 "use client";
 import React from "react";
+import { useReference } from "../context/ReferenceContext";
 
 const Paid = ({ userInfo }) => {
+  const { reference } = useReference();
   const paidDevice = userInfo.filter(
-    (item) => item.reference === "TAHIR" && item.uid !== null
+    (item) => item.reference === reference && item.uid !== null
   );
   const totalServiceCharge = paidDevice.reduce(
     (sum, item) => sum + Number(item.service_charge || 0),

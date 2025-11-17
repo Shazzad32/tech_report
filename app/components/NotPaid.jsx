@@ -1,10 +1,12 @@
 "use client";
 import React from "react";
 import { PhoneCall } from "lucide-react";
+import { useReference } from "../context/ReferenceContext";
 
 const NotPaid = ({ userInfo }) => {
+  const { reference } = useReference();
   const notPaid = userInfo.filter(
-    (item) => item.reference === "TAHIR" && item.uid === null
+    (item) => item.reference === reference && item.uid === null
   );
 
   return (
