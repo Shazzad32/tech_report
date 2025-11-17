@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { Home, BarChart2, User, Settings, Menu, LogOut } from "lucide-react";
 import LogInPage from "./LogInPage";
 import NotPaid from "./NotPaid";
-import PaidDevice from "./Paid";
 import Paid from "./Paid";
+import TotalConnection from "./TotalConnection";
 
 const Main = ({ userinfo }) => {
   const [activePage, setActivePage] = useState("home");
@@ -19,6 +19,12 @@ const Main = ({ userinfo }) => {
             <LogInPage />
           </div>
         );
+      case "total":
+        return (
+          <div className="p-6 text-center text-white text-xl">
+            <TotalConnection userInfo={userInfo} />
+          </div>
+        );
       case "paid":
         return (
           <div className="p-6 text-center text-white text-xl">
@@ -31,6 +37,7 @@ const Main = ({ userinfo }) => {
             <NotPaid userInfo={userInfo} />
           </div>
         );
+
       case "settings":
         return (
           <div className="p-6 text-center text-white text-xl">
@@ -54,6 +61,14 @@ const Main = ({ userinfo }) => {
             }`}
           >
             <Home size={18} /> Home
+          </button>
+          <button
+            onClick={() => setActivePage("total")}
+            className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium transition ${
+              activePage === "total" ? "bg-green-800" : "hover:bg-green-700"
+            }`}
+          >
+            <BarChart2 size={18} /> Total Connections
           </button>
           <button
             onClick={() => setActivePage("paid")}
@@ -95,9 +110,9 @@ const Main = ({ userinfo }) => {
           </div>
         </div>
 
-        <div className="flex-1 bg-gray-500">{renderPage()}</div>
+        <div className="flex-1 bg-gray-400">{renderPage()}</div>
 
-        <div className="flex h-16 items-center justify-around bg-green-100 shadow-inner md:hidden">
+        <div className="flex h-14 items-center justify-around bg-green-100 shadow-inner md:hidden">
           <button
             onClick={() => setActivePage("home")}
             className={`flex flex-col items-center ${
@@ -108,6 +123,15 @@ const Main = ({ userinfo }) => {
             <span className="text-xs">Home</span>
           </button>
 
+          <button
+            onClick={() => setActivePage("total")}
+            className={`flex flex-col items-center ${
+              activePage === "total" ? "text-green-600" : "text-gray-500"
+            }`}
+          >
+            <BarChart2 size={22} />
+            <span className="text-xs">Total Connections</span>
+          </button>
           <button
             onClick={() => setActivePage("paid")}
             className={`flex flex-col items-center ${

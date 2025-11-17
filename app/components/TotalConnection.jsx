@@ -1,11 +1,8 @@
 "use client";
 import React from "react";
-import { PhoneCall } from "lucide-react";
 
-const NotPaid = ({ userInfo }) => {
-  const notPaid = userInfo.filter(
-    (item) => item.reference === "TAHIR" && item.uid === null
-  );
+const TotalConnection = ({ userInfo }) => {
+  const totalDevice = userInfo.filter((item) => item.reference === "TAHIR");
 
   return (
     <div className="w-full h-[93vh] p-4 bg-[#0d0d0d]">
@@ -17,16 +14,16 @@ const NotPaid = ({ userInfo }) => {
       >
         <div className="flex flex-col items-center group">
           <h2 className="text-sm md:text-lg font-semibold text-blue-400 group-hover:text-blue-300 transition">
-            Not Paid
+            Total Connection
           </h2>
           <p className="text-base md:text-xl font-bold text-white group-hover:scale-110 transition">
-            {notPaid.length}
+            {totalDevice.length}
           </p>
         </div>
       </div>
-      <div className="w-full h-[90%] p-2 overflow-y-auto">
+      <div className="w-full h-[90%] overflow-y-auto p-2">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {notPaid.map((data, i) => (
+          {totalDevice.map((data, i) => (
             <div
               key={i}
               className="p-3 rounded-xl bg-white/10 backdrop-blur-lg border border-white/10 shadow-md hover:shadow-xl transition-all text-white text-left"
@@ -35,13 +32,6 @@ const NotPaid = ({ userInfo }) => {
                 <p className="text-base font-semibold text-blue-400">
                   {data.registration_number}
                 </p>
-
-                <a
-                  href={`tel:${data.driver_phone}`}
-                  className="p-2 rounded-full bg-green-500 hover:bg-green-600 transition"
-                >
-                  <PhoneCall size={20} className="text-white" />
-                </a>
               </div>
 
               <div className="text-xs space-y-1 text-gray-200">
@@ -62,4 +52,4 @@ const NotPaid = ({ userInfo }) => {
   );
 };
 
-export default NotPaid;
+export default TotalConnection;
